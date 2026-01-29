@@ -13,6 +13,7 @@ import {
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
 export default function App() {
+  // --- State Management ---
   const [image, setImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
