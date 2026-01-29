@@ -425,8 +425,8 @@ export default function App() {
 
             {/* Disclaimer */}
             <p className="text-xs text-center text-slate-600 shrink-0">
-              AI Identification may not be 98% accurate.
-              Vision.
+              AI Identification may not be 100% accurate.
+              Vision. Use responsibly.
             </p>
           </div>
         </div>
