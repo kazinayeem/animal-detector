@@ -425,7 +425,7 @@ export default function App() {
 
             {/* Disclaimer */}
             <p className="text-xs text-center text-slate-600 shrink-0">
-              AI Identification may not be 100% accurate. Powered by Gemini
+              AI Identification may not be 98% accurate.
               Vision.
             </p>
           </div>
