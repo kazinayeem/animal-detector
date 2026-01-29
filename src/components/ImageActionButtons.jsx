@@ -1,5 +1,4 @@
-import React from "react";
-import { Camera, RefreshCw, Download } from "lucide-react";
+import { Zap, RotateCcw, Download } from "lucide-react";
 
 export default function ImageActionButtons({
   result,
@@ -9,64 +8,33 @@ export default function ImageActionButtons({
   onDownload,
 }) {
   return (
-    <div className="flex flex-col gap-3 sm:flex-row">
-      {!result && !loading && (
+    <div className="flex flex-col sm:flex-row gap-4">
+      {!result ? (
         <button
           onClick={onAnalyze}
-          className="flex-1 text-white py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
-          style={{
-            background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-            boxShadow: "0 4px 15px rgba(59, 130, 246, 0.3)",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "linear-gradient(135deg, #2563eb 0%, #1e40af 100%)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)";
-          }}
+          disabled={loading}
+          className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-600 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
         >
-          <Camera size={18} />
-          Detect Animals
+          <Zap size={20} />
+          {loading ? "Analyzing..." : "Analyze Image"}
         </button>
-      )}
-
-      <button
-        onClick={onReset}
-        className="px-4 py-3 text-slate-900 rounded-xl font-medium transition-colors border flex items-center justify-center gap-2"
-        style={{
-          backgroundColor: "#e2e8f0",
-          borderColor: "#cbd5e1",
-          color: "#1f2937",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#cbd5e1";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "#e2e8f0";
-        }}
-      >
-        <RefreshCw size={18} />
-        <span className="hidden sm:inline">Reset</span>
-      </button>
-
-      {result && (
-        <button
-          onClick={onDownload}
-          className="flex-1 text-white py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
-          style={{
-            background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-            boxShadow: "0 4px 15px rgba(16, 185, 129, 0.3)",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "linear-gradient(135deg, #059669 0%, #047857 100%)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "linear-gradient(135deg, #10b981 0%, #059669 100%)";
-          }}
-        >
-          <Download size={18} />
-          Save Result
-        </button>
+      ) : (
+        <>
+          <button
+            onClick={onDownload}
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-green-500 text-white font-semibold rounded-xl hover:from-green-700 hover:to-green-600 hover:shadow-lg transition-all duration-300 active:scale-95"
+          >
+            <Download size={20} />
+            Download Result
+          </button>
+          <button
+            onClick={onReset}
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gray-200 text-gray-700 font-semibold rounded-xl hover:bg-gray-300 transition-all duration-300 active:scale-95"
+          >
+            <RotateCcw size={20} />
+            Upload New
+          </button>
+        </>
       )}
     </div>
   );

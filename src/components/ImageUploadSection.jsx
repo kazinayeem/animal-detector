@@ -1,5 +1,4 @@
-import React from "react";
-import { Upload } from "lucide-react";
+import { Upload, Cloud } from "lucide-react";
 
 export default function ImageUploadSection({
   onImageUpload,
@@ -8,57 +7,40 @@ export default function ImageUploadSection({
 }) {
   return (
     <div
-      className="border-2 border-dashed rounded-2xl p-8 sm:p-12 flex flex-col items-center justify-center text-center transition-all cursor-pointer group min-h-[300px] sm:min-h-[400px]"
-      style={{
-        borderColor: "#cbd5e1",
-        backgroundColor: "#f0f9ff",
-      }}
       onDragOver={onDragOver}
       onDrop={onDrop}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "#3b82f6";
-        e.currentTarget.style.backgroundColor = "#e0f2fe";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "#cbd5e1";
-        e.currentTarget.style.backgroundColor = "#f0f9ff";
-      }}
+      className="relative bg-white rounded-2xl border-2 border-dashed border-blue-300 shadow-sm hover:shadow-lg hover:border-blue-400 transition-all duration-300 cursor-pointer group p-8 sm:p-16"
     >
-      <div
-        className="p-3 sm:p-4 rounded-full mb-4"
-        style={{
-          backgroundColor: "#dbeafe",
-        }}
-      >
-        <Upload className="w-6 sm:w-8 h-6 sm:h-8" style={{ color: "#2563eb" }} />
+      <div className="flex flex-col items-center justify-center gap-6 text-center">
+        <div className="p-4 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+          <Upload className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            Upload Image
+          </h3>
+          <p className="text-gray-600 text-sm sm:text-base">
+            Drag and drop your image here, or click the button below to select
+          </p>
+          <p className="text-gray-500 text-xs sm:text-sm pt-2">
+            Supported formats: JPG, PNG, WEBP (Max 10MB)
+          </p>
+        </div>
+
+        <label className="mt-4">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={onImageUpload}
+            className="hidden"
+          />
+          <button className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-600 hover:shadow-lg transition-all duration-300 cursor-pointer active:scale-95">
+            <Cloud className="w-5 h-5" />
+            Select Image
+          </button>
+        </label>
       </div>
-      <h3 className="text-base sm:text-lg font-semibold mb-2" style={{ color: "#1f2937" }}>
-        Upload Image
-      </h3>
-      <p className="text-xs sm:text-sm mb-6" style={{ color: "#4b5563" }}>
-        Drag and drop or click to browse
-      </p>
-      <label
-        className="text-white px-4 sm:px-6 py-2 rounded-lg font-medium cursor-pointer transition-colors shadow-lg"
-        style={{
-          background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-          boxShadow: "0 4px 15px rgba(59, 130, 246, 0.2)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = "linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)";
-        }}
-      >
-        Select File
-        <input
-          type="file"
-          className="hidden"
-          accept="image/*"
-          onChange={onImageUpload}
-        />
-      </label>
     </div>
   );
 }
